@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StateService } from '../services/state.service';
 
 @Component({
   selector: 'app-tabs',
@@ -7,6 +8,15 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {}
+  connectionState: boolean;
 
+  constructor(private stateService: StateService) {
+    this.stateService.getConnectionState();
+  }
+
+  ngOnInit() {
+    let connectionState = this.stateService.getConnectionState();  
+    return connectionState;
+  }
+  
 }
